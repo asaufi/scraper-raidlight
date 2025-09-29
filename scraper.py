@@ -86,7 +86,7 @@ if __name__ == "__main__":
     
     urls_uniques = list(set(tous_les_produits))
 
-    for lien in urls_uniques[:10]:  # limite à 100 produits max
+    for lien in urls_uniques[:100]:  # limite à 100 produits max
         print(f"Analyse de {lien}")
         infos = extrait_infos_produit(lien)
         produits_details.append(infos)
