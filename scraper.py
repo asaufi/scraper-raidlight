@@ -23,12 +23,24 @@ def extrait_liens_produits_depuis_page(soup):
 
 
 if __name__ == "__main__":
-    url_test = "https://raidlight.com/pages/vetement-femme"  # une catégorie au hasard
-    print(f"Chargement de {url_test}")
-    soup = get_soup(url_test)
+        # Étape 2 : parcourir plusieurs catégories
+    categories = [
+        "https://raidlight.com/pages/vetement-femme",
+        "https://raidlight.com/pages/vetement-de-trail-homme",
+        "https://raidlight.com/collections/fin-de-series",
+        "https://raidlight.com/pages/trail-to-be-alive"
+    ]
 
-    produits = extrait_liens_produits_depuis_page(soup)
+    tous_les_produits = []
 
-    print("Liens produits trouvés sur cette page :")
-    for lien in produits:
+    for url_cat in categories:
+        print(f"\n🔎 Chargement de {url_cat}")
+        soup = get_soup(url_cat)
+        produits = extrait_liens_produits_depuis_page(soup)
+        tous_les_produits.extend(produits)
+
+    print("\n=== Liens produits trouvés sur toutes les catégories ===")
+    for lien in tous_les_produits:
         print(lien)
+    print(f"\nTotal produits collectés : {len(tous_les_produits)}")
+
